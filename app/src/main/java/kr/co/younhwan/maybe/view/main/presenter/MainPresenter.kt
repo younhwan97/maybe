@@ -26,17 +26,23 @@ class MainPresenter(
     )
 
     override fun setIcon(zoomLev: Float) {
+        // 1. Set up places to show
         val placeList = mutableListOf<String>("제주", "한림", "서귀포", "성산", "우도")
 
-        // Zoom In
         if (zoomLev >= 10.8)
             placeList.addAll(listOf("애월", "한경", "대정", "안덕", "중문", "남원", "표선", "구좌", "조천", "마라도"))
 
+        // 2. ....
+
+
+        // 3. Check the latitude and longitude to display the marker
         val latLngList: MutableList<LatLng> = mutableListOf<LatLng>()
+
         for (place in placeList) {
             latLngList.add(locationMap[place] ?: LatLng(0.0, 0.0))
         }
 
+        // 4. Show
         view.addMarker(latLngList)
     }
 }
