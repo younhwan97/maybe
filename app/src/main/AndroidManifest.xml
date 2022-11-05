@@ -33,7 +33,6 @@
         <activity
             android:name=".view.main.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Maybe.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
