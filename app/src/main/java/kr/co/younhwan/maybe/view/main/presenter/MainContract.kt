@@ -9,5 +9,7 @@ interface MainContract {
 
     interface Model {
         fun setIcon(zoomLev: Float)
+
+        fun readMaybe()
     }
 }

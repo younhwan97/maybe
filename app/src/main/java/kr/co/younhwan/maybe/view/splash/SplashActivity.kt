@@ -3,7 +3,6 @@ package kr.co.younhwan.maybe.view.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.younhwan.maybe.databinding.ActivitySplashBinding
 import kr.co.younhwan.maybe.view.main.MainActivity
@@ -32,10 +31,7 @@ class SplashActivity :
         // Set loading view
         binding.splashImage.playAnimation()
 
-        // Temp delay
-        Handler().postDelayed(Runnable {
-            startMainAct()
-        }, 2000)
+        startMainAct()
     }
 
     override fun startMainAct() {

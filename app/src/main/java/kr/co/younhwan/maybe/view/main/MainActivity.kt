@@ -1,7 +1,6 @@
 package kr.co.younhwan.maybe.view.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.GoogleMap.OnCameraMoveListener
@@ -10,6 +9,7 @@ import com.google.android.gms.maps.GoogleMap.OnCameraMoveCanceledListener
 import com.google.android.gms.maps.GoogleMap.OnCameraIdleListener
 import com.google.android.gms.maps.model.*
 import kr.co.younhwan.maybe.R
+import kr.co.younhwan.maybe.data.source.maybe.MaybeRepository
 import kr.co.younhwan.maybe.databinding.ActivityMainBinding
 import kr.co.younhwan.maybe.view.main.presenter.MainContract
 import kr.co.younhwan.maybe.view.main.presenter.MainPresenter
@@ -28,7 +28,8 @@ class MainActivity :
     // presenter
     private val presenter: MainPresenter by lazy {
         MainPresenter(
-            view = this
+            view = this,
+            maybeData = MaybeRepository,
         )
     }
 
@@ -45,10 +46,6 @@ class MainActivity :
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -93,6 +90,9 @@ class MainActivity :
 
             // Set Marker
             presenter.setIcon(previousZoomLev)
+
+            // Read API
+            presenter.readMaybe()
         }
     }
 

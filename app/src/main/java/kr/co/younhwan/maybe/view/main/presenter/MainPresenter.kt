@@ -2,9 +2,12 @@ package kr.co.younhwan.maybe.view.main.presenter
 
 import android.util.Log
 import com.google.android.gms.maps.model.LatLng
+import kr.co.younhwan.maybe.data.source.maybe.MaybeRepository
+import kr.co.younhwan.maybe.data.source.maybe.MaybeSource
 
 class MainPresenter(
-    private val view: MainContract.View
+    private val view: MainContract.View,
+    private val maybeData: MaybeRepository
 ) : MainContract.Model {
 
     private val locationMap = mapOf<String, LatLng>(
@@ -44,5 +47,15 @@ class MainPresenter(
 
         // 4. Show
         view.addMarker(latLngList)
+    }
+
+    override fun readMaybe() {
+        maybeData.read(
+            readCallback = object : MaybeSource.ReadCallback{
+                override fun onRead() {
+
+                }
+            }
+        )
     }
 }
